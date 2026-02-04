@@ -46,6 +46,7 @@
             panel4 = new Panel();
             label1 = new Label();
             panel2 = new Panel();
+            uC_LopHanhChinh1 = new QuanLyDiemSV.Forms.UC_LopHanhChinh();
             uC_GiangVien1 = new QuanLyDiemSV.Forms.UC_GiangVien();
             uC_QuanLyDiem_Container1 = new QuanLyDiemSV.Forms.UC_QuanLyDiem_Container();
             uC_LopHocPhan1 = new UC_LopHocPhan();
@@ -53,7 +54,7 @@
             uC_MonHoc1 = new GUI.UC_MonHoc();
             uC_SinhVien1 = new UC_SinhVien();
             uC_Home1 = new UC_LopHocPhan();
-            uC_LopHanhChinh1 = new QuanLyDiemSV.Forms.UC_LopHanhChinh();
+            uC_TaiKhoan1 = new QuanLyDiemSV.Forms.UC_TaiKhoan();
             panel1.SuspendLayout();
             panel3.SuspendLayout();
             panel4.SuspendLayout();
@@ -100,6 +101,7 @@
             btnTaiKhoan.Text = "               Tài khoản";
             btnTaiKhoan.TextAlign = ContentAlignment.MiddleLeft;
             btnTaiKhoan.UseVisualStyleBackColor = false;
+            btnTaiKhoan.Click += btnTaiKhoan_Click;
             // 
             // btnTraCuuDiem
             // 
@@ -349,6 +351,7 @@
             // panel2
             // 
             panel2.BackColor = Color.White;
+            panel2.Controls.Add(uC_TaiKhoan1);
             panel2.Controls.Add(uC_LopHanhChinh1);
             panel2.Controls.Add(uC_GiangVien1);
             panel2.Controls.Add(uC_QuanLyDiem_Container1);
@@ -362,6 +365,14 @@
             panel2.Name = "panel2";
             panel2.Size = new Size(1694, 954);
             panel2.TabIndex = 1;
+            // 
+            // uC_LopHanhChinh1
+            // 
+            uC_LopHanhChinh1.Dock = DockStyle.Fill;
+            uC_LopHanhChinh1.Location = new Point(0, 0);
+            uC_LopHanhChinh1.Name = "uC_LopHanhChinh1";
+            uC_LopHanhChinh1.Size = new Size(1694, 954);
+            uC_LopHanhChinh1.TabIndex = 7;
             // 
             // uC_GiangVien1
             // 
@@ -422,13 +433,13 @@
             uC_Home1.Size = new Size(1694, 954);
             uC_Home1.TabIndex = 0;
             // 
-            // uC_LopHanhChinh1
+            // uC_TaiKhoan1
             // 
-            uC_LopHanhChinh1.Dock = DockStyle.Fill;
-            uC_LopHanhChinh1.Location = new Point(0, 0);
-            uC_LopHanhChinh1.Name = "uC_LopHanhChinh1";
-            uC_LopHanhChinh1.Size = new Size(1694, 954);
-            uC_LopHanhChinh1.TabIndex = 7;
+            uC_TaiKhoan1.Dock = DockStyle.Fill;
+            uC_TaiKhoan1.Location = new Point(0, 0);
+            uC_TaiKhoan1.Name = "uC_TaiKhoan1";
+            uC_TaiKhoan1.Size = new Size(1694, 954);
+            uC_TaiKhoan1.TabIndex = 8;
             // 
             // Form1
             // 
@@ -481,6 +492,7 @@
         private Forms.UC_QuanLyDiem_Container uC_QuanLyDiem_Container1;
         private Forms.UC_GiangVien uC_GiangVien1;
         private Forms.UC_LopHanhChinh uC_LopHanhChinh1;
+        private Forms.UC_TaiKhoan uC_TaiKhoan1;
     }
 }
 

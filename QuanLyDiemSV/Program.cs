@@ -1,5 +1,7 @@
 
 
+using GUI;
+
 namespace QuanLyDiemSV
 {
     internal static class Program

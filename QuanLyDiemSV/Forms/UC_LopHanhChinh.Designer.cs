@@ -32,7 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UC_LopHanhChinh));
             panelGrid = new Panel();
             groupBoxList = new GroupBox();
-            dgvAdminSinhVien = new DataGridView();
+            dgvLopHanhChinh = new DataGridView();
             btnAdTimKiem_SV = new Button();
             cboAdTimKiem_SV = new ComboBox();
             btnAdShowAll_SV = new Button();
@@ -43,30 +43,30 @@
             panelSearch = new Panel();
             panelInput = new Panel();
             groupBoxInfo = new GroupBox();
+            label4 = new Label();
+            label5 = new Label();
+            cboGCVN = new ComboBox();
+            cboNganh = new ComboBox();
+            txtNienKhoa = new TextBox();
+            label3 = new Label();
+            txtTenLop = new TextBox();
+            label2 = new Label();
+            txtMaLop = new TextBox();
+            label1 = new Label();
             btnSua = new Button();
             btnLamLai = new Button();
             btnLuu = new Button();
+            btnAddNganh = new Button();
             btnThem = new Button();
             btnXoa = new Button();
-            label1 = new Label();
-            txtMaLop = new TextBox();
-            label2 = new Label();
-            txtTenLop = new TextBox();
-            label3 = new Label();
-            txtNienKhoa = new TextBox();
-            label4 = new Label();
-            label5 = new Label();
-            cboHocVi = new ComboBox();
-            cboKhoa = new ComboBox();
-            btnAddNganh = new Button();
             MaLop = new DataGridViewTextBoxColumn();
             TenLop = new DataGridViewTextBoxColumn();
-            NgaySinh = new DataGridViewTextBoxColumn();
+            NienKhoa = new DataGridViewTextBoxColumn();
             MaNganh = new DataGridViewTextBoxColumn();
             MaGVCN = new DataGridViewTextBoxColumn();
             panelGrid.SuspendLayout();
             groupBoxList.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)dgvAdminSinhVien).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)dgvLopHanhChinh).BeginInit();
             groupBoxSearch.SuspendLayout();
             panelSearch.SuspendLayout();
             panelInput.SuspendLayout();
@@ -86,7 +86,7 @@
             // 
             // groupBoxList
             // 
-            groupBoxList.Controls.Add(dgvAdminSinhVien);
+            groupBoxList.Controls.Add(dgvLopHanhChinh);
             groupBoxList.Dock = DockStyle.Fill;
             groupBoxList.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBoxList.Location = new Point(10, 12);
@@ -98,14 +98,14 @@
             groupBoxList.TabStop = false;
             groupBoxList.Text = "Danh sách lớp học ";
             // 
-            // dgvAdminSinhVien
+            // dgvLopHanhChinh
             // 
-            dgvAdminSinhVien.AllowUserToAddRows = false;
-            dgvAdminSinhVien.AllowUserToDeleteRows = false;
-            dgvAdminSinhVien.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvAdminSinhVien.BackgroundColor = SystemColors.ButtonHighlight;
-            dgvAdminSinhVien.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvAdminSinhVien.Columns.AddRange(new DataGridViewColumn[] { MaLop, TenLop, NgaySinh, MaNganh, MaGVCN });
+            dgvLopHanhChinh.AllowUserToAddRows = false;
+            dgvLopHanhChinh.AllowUserToDeleteRows = false;
+            dgvLopHanhChinh.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvLopHanhChinh.BackgroundColor = SystemColors.ButtonHighlight;
+            dgvLopHanhChinh.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvLopHanhChinh.Columns.AddRange(new DataGridViewColumn[] { MaLop, TenLop, NienKhoa, MaNganh, MaGVCN });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -113,17 +113,17 @@
             dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dgvAdminSinhVien.DefaultCellStyle = dataGridViewCellStyle1;
-            dgvAdminSinhVien.Dock = DockStyle.Fill;
-            dgvAdminSinhVien.Location = new Point(3, 24);
-            dgvAdminSinhVien.Margin = new Padding(3, 4, 3, 4);
-            dgvAdminSinhVien.MultiSelect = false;
-            dgvAdminSinhVien.Name = "dgvAdminSinhVien";
-            dgvAdminSinhVien.ReadOnly = true;
-            dgvAdminSinhVien.RowHeadersWidth = 51;
-            dgvAdminSinhVien.RowTemplate.Height = 24;
-            dgvAdminSinhVien.Size = new Size(1668, 521);
-            dgvAdminSinhVien.TabIndex = 0;
+            dgvLopHanhChinh.DefaultCellStyle = dataGridViewCellStyle1;
+            dgvLopHanhChinh.Dock = DockStyle.Fill;
+            dgvLopHanhChinh.Location = new Point(3, 24);
+            dgvLopHanhChinh.Margin = new Padding(3, 4, 3, 4);
+            dgvLopHanhChinh.MultiSelect = false;
+            dgvLopHanhChinh.Name = "dgvLopHanhChinh";
+            dgvLopHanhChinh.ReadOnly = true;
+            dgvLopHanhChinh.RowHeadersWidth = 51;
+            dgvLopHanhChinh.RowTemplate.Height = 24;
+            dgvLopHanhChinh.Size = new Size(1668, 521);
+            dgvLopHanhChinh.TabIndex = 0;
             // 
             // btnAdTimKiem_SV
             // 
@@ -232,8 +232,8 @@
             groupBoxInfo.BackColor = Color.LemonChiffon;
             groupBoxInfo.Controls.Add(label4);
             groupBoxInfo.Controls.Add(label5);
-            groupBoxInfo.Controls.Add(cboHocVi);
-            groupBoxInfo.Controls.Add(cboKhoa);
+            groupBoxInfo.Controls.Add(cboGCVN);
+            groupBoxInfo.Controls.Add(cboNganh);
             groupBoxInfo.Controls.Add(txtNienKhoa);
             groupBoxInfo.Controls.Add(label3);
             groupBoxInfo.Controls.Add(txtTenLop);
@@ -256,135 +256,6 @@
             groupBoxInfo.TabIndex = 0;
             groupBoxInfo.TabStop = false;
             groupBoxInfo.Text = "Thông tin lớp học";
-            groupBoxInfo.Enter += groupBoxInfo_Enter;
-            // 
-            // btnSua
-            // 
-            btnSua.BackColor = Color.White;
-            btnSua.FlatStyle = FlatStyle.Flat;
-            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
-            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
-            btnSua.Location = new Point(744, 206);
-            btnSua.Margin = new Padding(3, 4, 3, 4);
-            btnSua.Name = "btnSua";
-            btnSua.Padding = new Padding(10, 0, 0, 0);
-            btnSua.Size = new Size(195, 56);
-            btnSua.TabIndex = 21;
-            btnSua.Text = "Sửa";
-            btnSua.UseVisualStyleBackColor = false;
-            // 
-            // btnLamLai
-            // 
-            btnLamLai.BackColor = Color.White;
-            btnLamLai.FlatStyle = FlatStyle.Flat;
-            btnLamLai.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLamLai.Image = (Image)resources.GetObject("btnLamLai.Image");
-            btnLamLai.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLamLai.Location = new Point(522, 206);
-            btnLamLai.Margin = new Padding(3, 4, 3, 4);
-            btnLamLai.Name = "btnLamLai";
-            btnLamLai.Padding = new Padding(10, 0, 0, 0);
-            btnLamLai.Size = new Size(195, 56);
-            btnLamLai.TabIndex = 20;
-            btnLamLai.Text = "Làm lại";
-            btnLamLai.UseVisualStyleBackColor = false;
-            // 
-            // btnLuu
-            // 
-            btnLuu.BackColor = Color.White;
-            btnLuu.FlatStyle = FlatStyle.Flat;
-            btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
-            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
-            btnLuu.Location = new Point(65, 206);
-            btnLuu.Margin = new Padding(3, 4, 3, 4);
-            btnLuu.Name = "btnLuu";
-            btnLuu.Padding = new Padding(10, 0, 0, 0);
-            btnLuu.Size = new Size(195, 56);
-            btnLuu.TabIndex = 18;
-            btnLuu.Text = "Lưu";
-            btnLuu.UseVisualStyleBackColor = false;
-            // 
-            // btnThem
-            // 
-            btnThem.BackColor = Color.White;
-            btnThem.FlatStyle = FlatStyle.Flat;
-            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
-            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
-            btnThem.Location = new Point(296, 206);
-            btnThem.Margin = new Padding(3, 4, 3, 4);
-            btnThem.Name = "btnThem";
-            btnThem.Padding = new Padding(10, 0, 0, 0);
-            btnThem.Size = new Size(195, 56);
-            btnThem.TabIndex = 19;
-            btnThem.Text = "Thêm";
-            btnThem.UseVisualStyleBackColor = false;
-            // 
-            // btnXoa
-            // 
-            btnXoa.BackColor = Color.White;
-            btnXoa.FlatStyle = FlatStyle.Flat;
-            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
-            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
-            btnXoa.Location = new Point(968, 206);
-            btnXoa.Margin = new Padding(3, 4, 3, 4);
-            btnXoa.Name = "btnXoa";
-            btnXoa.Padding = new Padding(10, 0, 0, 0);
-            btnXoa.Size = new Size(195, 56);
-            btnXoa.TabIndex = 22;
-            btnXoa.Text = "Xóa";
-            btnXoa.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(69, 45);
-            label1.Name = "label1";
-            label1.Size = new Size(65, 20);
-            label1.TabIndex = 23;
-            label1.Text = "Mã Lớp:";
-            // 
-            // txtMaLop
-            // 
-            txtMaLop.Location = new Point(180, 45);
-            txtMaLop.Name = "txtMaLop";
-            txtMaLop.Size = new Size(216, 27);
-            txtMaLop.TabIndex = 24;
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(69, 100);
-            label2.Name = "label2";
-            label2.Size = new Size(68, 20);
-            label2.TabIndex = 23;
-            label2.Text = "Tên Lớp:";
-            // 
-            // txtTenLop
-            // 
-            txtTenLop.Location = new Point(180, 97);
-            txtTenLop.Name = "txtTenLop";
-            txtTenLop.Size = new Size(216, 27);
-            txtTenLop.TabIndex = 24;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(69, 155);
-            label3.Name = "label3";
-            label3.Size = new Size(86, 20);
-            label3.TabIndex = 23;
-            label3.Text = "Niên Khóa:";
-            // 
-            // txtNienKhoa
-            // 
-            txtNienKhoa.Location = new Point(180, 152);
-            txtNienKhoa.Name = "txtNienKhoa";
-            txtNienKhoa.Size = new Size(216, 27);
-            txtNienKhoa.TabIndex = 24;
             // 
             // label4
             // 
@@ -404,23 +275,122 @@
             label5.TabIndex = 130;
             label5.Text = "Ngành: ";
             // 
-            // cboHocVi
+            // cboGCVN
             // 
-            cboHocVi.FormattingEnabled = true;
-            cboHocVi.Location = new Point(513, 97);
-            cboHocVi.Margin = new Padding(3, 4, 3, 4);
-            cboHocVi.Name = "cboHocVi";
-            cboHocVi.Size = new Size(400, 28);
-            cboHocVi.TabIndex = 127;
+            cboGCVN.FormattingEnabled = true;
+            cboGCVN.Location = new Point(513, 97);
+            cboGCVN.Margin = new Padding(3, 4, 3, 4);
+            cboGCVN.Name = "cboGCVN";
+            cboGCVN.Size = new Size(400, 28);
+            cboGCVN.TabIndex = 127;
             // 
-            // cboKhoa
+            // cboNganh
             // 
-            cboKhoa.FormattingEnabled = true;
-            cboKhoa.Location = new Point(513, 45);
-            cboKhoa.Margin = new Padding(3, 4, 3, 4);
-            cboKhoa.Name = "cboKhoa";
-            cboKhoa.Size = new Size(400, 28);
-            cboKhoa.TabIndex = 128;
+            cboNganh.FormattingEnabled = true;
+            cboNganh.Location = new Point(513, 45);
+            cboNganh.Margin = new Padding(3, 4, 3, 4);
+            cboNganh.Name = "cboNganh";
+            cboNganh.Size = new Size(400, 28);
+            cboNganh.TabIndex = 128;
+            // 
+            // txtNienKhoa
+            // 
+            txtNienKhoa.Location = new Point(180, 152);
+            txtNienKhoa.Name = "txtNienKhoa";
+            txtNienKhoa.Size = new Size(216, 27);
+            txtNienKhoa.TabIndex = 24;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(69, 155);
+            label3.Name = "label3";
+            label3.Size = new Size(86, 20);
+            label3.TabIndex = 23;
+            label3.Text = "Niên Khóa:";
+            // 
+            // txtTenLop
+            // 
+            txtTenLop.Location = new Point(180, 97);
+            txtTenLop.Name = "txtTenLop";
+            txtTenLop.Size = new Size(216, 27);
+            txtTenLop.TabIndex = 24;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(69, 100);
+            label2.Name = "label2";
+            label2.Size = new Size(68, 20);
+            label2.TabIndex = 23;
+            label2.Text = "Tên Lớp:";
+            // 
+            // txtMaLop
+            // 
+            txtMaLop.Location = new Point(180, 45);
+            txtMaLop.Name = "txtMaLop";
+            txtMaLop.Size = new Size(216, 27);
+            txtMaLop.TabIndex = 24;
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(69, 45);
+            label1.Name = "label1";
+            label1.Size = new Size(65, 20);
+            label1.TabIndex = 23;
+            label1.Text = "Mã Lớp:";
+            // 
+            // btnSua
+            // 
+            btnSua.BackColor = Color.White;
+            btnSua.FlatStyle = FlatStyle.Flat;
+            btnSua.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSua.Image = (Image)resources.GetObject("btnSua.Image");
+            btnSua.ImageAlign = ContentAlignment.MiddleLeft;
+            btnSua.Location = new Point(744, 206);
+            btnSua.Margin = new Padding(3, 4, 3, 4);
+            btnSua.Name = "btnSua";
+            btnSua.Padding = new Padding(10, 0, 0, 0);
+            btnSua.Size = new Size(195, 56);
+            btnSua.TabIndex = 21;
+            btnSua.Text = "Sửa";
+            btnSua.UseVisualStyleBackColor = false;
+            btnSua.Click += btnSua_Click;
+            // 
+            // btnLamLai
+            // 
+            btnLamLai.BackColor = Color.White;
+            btnLamLai.FlatStyle = FlatStyle.Flat;
+            btnLamLai.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLamLai.Image = (Image)resources.GetObject("btnLamLai.Image");
+            btnLamLai.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLamLai.Location = new Point(522, 206);
+            btnLamLai.Margin = new Padding(3, 4, 3, 4);
+            btnLamLai.Name = "btnLamLai";
+            btnLamLai.Padding = new Padding(10, 0, 0, 0);
+            btnLamLai.Size = new Size(195, 56);
+            btnLamLai.TabIndex = 20;
+            btnLamLai.Text = "Làm lại";
+            btnLamLai.UseVisualStyleBackColor = false;
+            btnLamLai.Click += btnLamLai_Click;
+            // 
+            // btnLuu
+            // 
+            btnLuu.BackColor = Color.White;
+            btnLuu.FlatStyle = FlatStyle.Flat;
+            btnLuu.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnLuu.Image = (Image)resources.GetObject("btnLuu.Image");
+            btnLuu.ImageAlign = ContentAlignment.MiddleLeft;
+            btnLuu.Location = new Point(65, 206);
+            btnLuu.Margin = new Padding(3, 4, 3, 4);
+            btnLuu.Name = "btnLuu";
+            btnLuu.Padding = new Padding(10, 0, 0, 0);
+            btnLuu.Size = new Size(195, 56);
+            btnLuu.TabIndex = 18;
+            btnLuu.Text = "Lưu";
+            btnLuu.UseVisualStyleBackColor = false;
+            btnLuu.Click += btnLuu_Click;
             // 
             // btnAddNganh
             // 
@@ -429,7 +399,7 @@
             btnAddNganh.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAddNganh.Image = (Image)resources.GetObject("btnAddNganh.Image");
             btnAddNganh.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAddNganh.Location = new Point(942, 40);
+            btnAddNganh.Location = new Point(939, 36);
             btnAddNganh.Margin = new Padding(3, 4, 3, 4);
             btnAddNganh.Name = "btnAddNganh";
             btnAddNganh.Padding = new Padding(10, 0, 0, 0);
@@ -437,6 +407,41 @@
             btnAddNganh.TabIndex = 19;
             btnAddNganh.Text = "Ngành";
             btnAddNganh.UseVisualStyleBackColor = false;
+            btnAddNganh.Click += btnAddNganh_Click;
+            // 
+            // btnThem
+            // 
+            btnThem.BackColor = Color.White;
+            btnThem.FlatStyle = FlatStyle.Flat;
+            btnThem.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnThem.Image = (Image)resources.GetObject("btnThem.Image");
+            btnThem.ImageAlign = ContentAlignment.MiddleLeft;
+            btnThem.Location = new Point(296, 206);
+            btnThem.Margin = new Padding(3, 4, 3, 4);
+            btnThem.Name = "btnThem";
+            btnThem.Padding = new Padding(10, 0, 0, 0);
+            btnThem.Size = new Size(195, 56);
+            btnThem.TabIndex = 19;
+            btnThem.Text = "Thêm";
+            btnThem.UseVisualStyleBackColor = false;
+            btnThem.Click += btnThem_Click;
+            // 
+            // btnXoa
+            // 
+            btnXoa.BackColor = Color.White;
+            btnXoa.FlatStyle = FlatStyle.Flat;
+            btnXoa.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnXoa.Image = (Image)resources.GetObject("btnXoa.Image");
+            btnXoa.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXoa.Location = new Point(968, 206);
+            btnXoa.Margin = new Padding(3, 4, 3, 4);
+            btnXoa.Name = "btnXoa";
+            btnXoa.Padding = new Padding(10, 0, 0, 0);
+            btnXoa.Size = new Size(195, 56);
+            btnXoa.TabIndex = 22;
+            btnXoa.Text = "Xóa";
+            btnXoa.UseVisualStyleBackColor = false;
+            btnXoa.Click += btnXoa_Click;
             // 
             // MaLop
             // 
@@ -454,13 +459,13 @@
             TenLop.Name = "TenLop";
             TenLop.ReadOnly = true;
             // 
-            // NgaySinh
+            // NienKhoa
             // 
-            NgaySinh.DataPropertyName = "NgaySinh";
-            NgaySinh.HeaderText = "Niên khóa";
-            NgaySinh.MinimumWidth = 6;
-            NgaySinh.Name = "NgaySinh";
-            NgaySinh.ReadOnly = true;
+            NienKhoa.DataPropertyName = "NienKhoa";
+            NienKhoa.HeaderText = "Niên khóa";
+            NienKhoa.MinimumWidth = 6;
+            NienKhoa.Name = "NienKhoa";
+            NienKhoa.ReadOnly = true;
             // 
             // MaNganh
             // 
@@ -472,7 +477,7 @@
             // 
             // MaGVCN
             // 
-            MaGVCN.DataPropertyName = "MaGVCN";
+            MaGVCN.DataPropertyName = "TenGV";
             MaGVCN.HeaderText = "Cố vấn học tập";
             MaGVCN.MinimumWidth = 6;
             MaGVCN.Name = "MaGVCN";
@@ -489,7 +494,7 @@
             Size = new Size(1694, 954);
             panelGrid.ResumeLayout(false);
             groupBoxList.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)dgvAdminSinhVien).EndInit();
+            ((System.ComponentModel.ISupportInitialize)dgvLopHanhChinh).EndInit();
             groupBoxSearch.ResumeLayout(false);
             groupBoxSearch.PerformLayout();
             panelSearch.ResumeLayout(false);
@@ -503,7 +508,7 @@
 
         private Panel panelGrid;
         private GroupBox groupBoxList;
-        private DataGridView dgvAdminSinhVien;
+        private DataGridView dgvLopHanhChinh;
         private Button btnAdTimKiem_SV;
         private ComboBox cboAdTimKiem_SV;
         private Button btnAdShowAll_SV;
@@ -527,12 +532,12 @@
         private Label label1;
         private Label label4;
         private Label label5;
-        private ComboBox cboHocVi;
-        private ComboBox cboKhoa;
+        private ComboBox cboGCVN;
+        private ComboBox cboNganh;
         private Button btnAddNganh;
         private DataGridViewTextBoxColumn MaLop;
         private DataGridViewTextBoxColumn TenLop;
-        private DataGridViewTextBoxColumn NgaySinh;
+        private DataGridViewTextBoxColumn NienKhoa;
         private DataGridViewTextBoxColumn MaNganh;
         private DataGridViewTextBoxColumn MaGVCN;
     }

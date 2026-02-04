@@ -1,117 +1,116 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using QuanLyDiemSV.Data;
-using GUI; // Namespace chứa UC_Diem
 
 namespace QuanLyDiemSV.Forms
 {
     public partial class UC_QuanLyDiem_Container : UserControl
     {
         QLDSVDbContext context = new QLDSVDbContext();
-        UC_Diem ucNhapDiem; // Màn hình nhập điểm (Con)
+        public event Action<string> OnChuyenManHinhNhapDiem;
 
         public UC_QuanLyDiem_Container()
         {
             InitializeComponent();
             this.Load += UC_QuanLyDiem_Container_Load;
-            dgvDanhSachSV.CellClick += dgvDanhSachSV_CellClick;
+            dgvDanhSachSV.CellContentClick += dgvDanhSachSV_CellContentClick;
         }
 
         private void UC_QuanLyDiem_Container_Load(object sender, EventArgs e)
         {
-            LoadDanhSachSinhVien();
-            AddButtonColumn(); // Thêm cột nút bấm
-            InitUserControlDiem(); // Khởi tạo màn hình con
+            LoadCboKhoa();
+            SetupDataGridView(); // Cấu hình cột trước
+            LoadData();
         }
 
-        // Khởi tạo màn hình nhập điểm và ẩn nó đi
-        private void InitUserControlDiem()
+        private void SetupDataGridView()
         {
-            ucNhapDiem = new UC_Diem();
-            ucNhapDiem.Dock = DockStyle.Fill;
-            ucNhapDiem.Visible = false; // Mặc định ẩn
+            // 1. Map đúng DataPropertyName khớp với LINQ
+            dgvDanhSachSV.AutoGenerateColumns = false; // Chặn tự sinh cột
 
-            // Đăng ký sự kiện: Khi bấm "Quay lại" ở màn hình con -> Gọi hàm xử lý ở đây
-            ucNhapDiem.OnBackClicked += UcNhapDiem_OnBackClicked;
+            // Đảm bảo tên cột trong Designer (Name) trùng với bên dưới:
+            if (dgvDanhSachSV.Columns["LopHanhChinh"] != null)
+                dgvDanhSachSV.Columns["LopHanhChinh"].DataPropertyName = "TenLop"; // Sửa mapping
 
-            // Thêm vào Controls của Container (Đè lên các panel khác)
-            this.Controls.Add(ucNhapDiem);
-        }
+            if (dgvDanhSachSV.Columns["MaKhoa"] != null)
+                dgvDanhSachSV.Columns["MaKhoa"].DataPropertyName = "TenKhoa"; // Sửa mapping
 
-        private void LoadDanhSachSinhVien()
-        {
-            try
+            // 2. Xử lý cột Thao tác dư thừa (Xóa cột text cũ trong designer nếu có)
+            if (dgvDanhSachSV.Columns["ThaoTac"] != null)
             {
-                var listSV = from sv in context.SinhVien
-                             join lop in context.LopHanhChinh on sv.MaLop equals lop.MaLop
-                             join nganh in context.Nganh on lop.MaNganh equals nganh.MaNganh
-                             join khoa in context.Khoa on nganh.MaKhoa equals khoa.MaKhoa
-                             select new
-                             {
-                                 MaSV = sv.MaSV,
-                                 HoTen = sv.HoTen,
-                                 NgaySinh = sv.NgaySinh,
-                                 GioiTinh = sv.GioiTinh,
-                                 Lop = lop.TenLop,
-                                 Khoa = khoa.TenKhoa,
-                                 TrangThai = sv.TrangThai == 1 ? "Đang học" : "Đã nghỉ"
-                             };
-
-                dgvDanhSachSV.DataSource = listSV.ToList();
-
-                // Định dạng cột (nếu cần)
-                if (dgvDanhSachSV.Columns["MaSV"] != null) dgvDanhSachSV.Columns["MaSV"].HeaderText = "Mã SV";
-                if (dgvDanhSachSV.Columns["HoTen"] != null) dgvDanhSachSV.Columns["HoTen"].HeaderText = "Họ Tên";
+                dgvDanhSachSV.Columns.Remove("ThaoTac");
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Lỗi tải danh sách: " + ex.Message);
-            }
-        }
 
-        private void AddButtonColumn()
-        {
+            // 3. Thêm cột Button "Nhập điểm" nếu chưa có
             if (dgvDanhSachSV.Columns["btnNhapDiem"] == null)
             {
                 DataGridViewButtonColumn btn = new DataGridViewButtonColumn();
-                btn.HeaderText = "Thao tác";
                 btn.Name = "btnNhapDiem";
+                btn.HeaderText = "Thao tác";
                 btn.Text = "Nhập điểm";
                 btn.UseColumnTextForButtonValue = true;
                 dgvDanhSachSV.Columns.Add(btn);
             }
         }
 
-        // Sự kiện khi bấm vào nút "Nhập điểm" trên lưới
-        private void dgvDanhSachSV_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void LoadData()
+        {
+            try
+            {
+                var query = from sv in context.SinhVien
+                            join lop in context.LopHanhChinh on sv.MaLop equals lop.MaLop
+                            join nganh in context.Nganh on lop.MaNganh equals nganh.MaNganh
+                            join khoa in context.Khoa on nganh.MaKhoa equals khoa.MaKhoa
+                            select new
+                            {
+                                MaSV = sv.MaSV,
+                                HoTen = sv.HoTen,
+                                NgaySinh = sv.NgaySinh,
+                                GioiTinh = sv.GioiTinh,
+                                TenLop = lop.TenLop,
+                                TenKhoa = khoa.TenKhoa,
+                                TrangThai = "Đang học"
+                            };
+
+                // Logic lọc theo khoa
+                if (cboKhoa.SelectedIndex != -1 && cboKhoa.SelectedValue is string maKhoa)
+                {
+                    // Lọc client-side sau khi query vì cấu trúc join phức tạp
+                    // Hoặc viết lại query dynamic. Ở đây dùng cách đơn giản:
+                    var list = query.ToList().Where(x => x.TenKhoa == cboKhoa.Text).ToList();
+                    // Lưu ý: Cách lọc chính xác nhất là thêm Where vào LINQ, nhưng ở đây tôi dùng filter list tạm thời
+                    dgvDanhSachSV.DataSource = list;
+                }
+                else
+                {
+                    dgvDanhSachSV.DataSource = query.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        // ... Các hàm LoadCboKhoa, dgvDanhSachSV_CellContentClick giữ nguyên như cũ ...
+        private void LoadCboKhoa()
+        {
+            cboKhoa.DataSource = context.Khoa.ToList();
+            cboKhoa.DisplayMember = "TenKhoa";
+            cboKhoa.ValueMember = "MaKhoa";
+            cboKhoa.SelectedIndex = -1;
+        }
+
+        private void dgvDanhSachSV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0 && dgvDanhSachSV.Columns[e.ColumnIndex].Name == "btnNhapDiem")
             {
                 string maSV = dgvDanhSachSV.Rows[e.RowIndex].Cells["MaSV"].Value.ToString();
-                ucNhapDiem.LoadThongTinSinhVien(maSV);
-
-                // --- SỬA LẠI ĐOẠN NÀY ĐỂ FULL MÀN HÌNH ---
-                ucNhapDiem.Visible = true;
-                ucNhapDiem.BringToFront();
-
-                // Ẩn tạm thời các thanh tìm kiếm đi cho đỡ vướng
-                panel1.Visible = false; // Panel Tìm kiếm
-                panel2.Visible = false; // Panel Sắp xếp
+                OnChuyenManHinhNhapDiem?.Invoke(maSV);
             }
-        }
-
-        // Xử lý sự kiện khi nút "Quay lại" được bấm ở màn hình con
-        private void UcNhapDiem_OnBackClicked(object sender, EventArgs e)
-        {
-            ucNhapDiem.Visible = false;
-
-            // Hiện lại các thanh tìm kiếm
-            panel1.Visible = true;
-            panel2.Visible = true;
         }
     }
 }

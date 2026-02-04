@@ -32,32 +32,54 @@
             panel1 = new Panel();
             panel5 = new Panel();
             groupBox4 = new GroupBox();
+            lblXepLoaiHK = new Label();
+            lblSoMon = new Label();
+            lblSTCTichLuy = new Label();
+            lblSTCDat = new Label();
+            lblDiemHe4 = new Label();
+            lblDiemHe10 = new Label();
             label1 = new Label();
             label5 = new Label();
+            label17 = new Label();
             label4 = new Label();
             label3 = new Label();
             label2 = new Label();
             panel4 = new Panel();
             groupBox3 = new GroupBox();
             dgvBangDiem = new DataGridView();
-            MaKQ = new DataGridViewTextBoxColumn();
-            MaLHP = new DataGridViewTextBoxColumn();
+            MaMon = new DataGridViewTextBoxColumn();
+            TenMon = new DataGridViewTextBoxColumn();
+            SoTinChi = new DataGridViewTextBoxColumn();
+            DiemGK = new DataGridViewTextBoxColumn();
+            DiemCK = new DataGridViewTextBoxColumn();
+            DiemThiLan1 = new DataGridViewTextBoxColumn();
+            DiemThiLan2 = new DataGridViewTextBoxColumn();
+            DiemTongKet = new DataGridViewTextBoxColumn();
+            DiemChu = new DataGridViewTextBoxColumn();
+            GhiChu = new DataGridViewTextBoxColumn();
             panel3 = new Panel();
             btnAdSua_SV = new Button();
             btnAdLamLai_SV = new Button();
             btnAdLua_SV = new Button();
             btnAdThem_SV = new Button();
+            btnXuatExcel = new Button();
             btnAdXoa_SV = new Button();
-            button5 = new Button();
+            btnQuayLai = new Button();
             panel2 = new Panel();
             groupBox2 = new GroupBox();
+            txtDiemThiLan2 = new TextBox();
+            label19 = new Label();
+            txtDiemThiLan1 = new TextBox();
+            label18 = new Label();
             txtDiemCK = new TextBox();
             label23 = new Label();
             txtDiemQT = new TextBox();
+            txtGhichu = new TextBox();
             txtSTC = new TextBox();
             txtTenMon = new TextBox();
             cboMaMon = new ComboBox();
-            comboBox1 = new ComboBox();
+            cboHocKy = new ComboBox();
+            label20 = new Label();
             label10 = new Label();
             label9 = new Label();
             label8 = new Label();
@@ -112,13 +134,20 @@
             // 
             // groupBox4
             // 
+            groupBox4.Controls.Add(lblXepLoaiHK);
+            groupBox4.Controls.Add(lblSoMon);
+            groupBox4.Controls.Add(lblSTCTichLuy);
+            groupBox4.Controls.Add(lblSTCDat);
+            groupBox4.Controls.Add(lblDiemHe4);
+            groupBox4.Controls.Add(lblDiemHe10);
             groupBox4.Controls.Add(label1);
             groupBox4.Controls.Add(label5);
+            groupBox4.Controls.Add(label17);
             groupBox4.Controls.Add(label4);
             groupBox4.Controls.Add(label3);
             groupBox4.Controls.Add(label2);
             groupBox4.Dock = DockStyle.Fill;
-            groupBox4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            groupBox4.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             groupBox4.Location = new Point(10, 0);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(1674, 253);
@@ -126,12 +155,72 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Tổng Kết Học Kỳ";
             // 
+            // lblXepLoaiHK
+            // 
+            lblXepLoaiHK.Anchor = AnchorStyles.None;
+            lblXepLoaiHK.AutoSize = true;
+            lblXepLoaiHK.Location = new Point(263, 197);
+            lblXepLoaiHK.Name = "lblXepLoaiHK";
+            lblXepLoaiHK.Size = new Size(121, 20);
+            lblXepLoaiHK.TabIndex = 7;
+            lblXepLoaiHK.Text = "Xếp Loại Học Kỳ";
+            // 
+            // lblSoMon
+            // 
+            lblSoMon.Anchor = AnchorStyles.None;
+            lblSoMon.AutoSize = true;
+            lblSoMon.Location = new Point(263, 167);
+            lblSoMon.Name = "lblSoMon";
+            lblSoMon.Size = new Size(142, 20);
+            lblSoMon.TabIndex = 7;
+            lblSoMon.Text = "Số môn đã có điểm";
+            // 
+            // lblSTCTichLuy
+            // 
+            lblSTCTichLuy.Anchor = AnchorStyles.None;
+            lblSTCTichLuy.AutoSize = true;
+            lblSTCTichLuy.Location = new Point(263, 145);
+            lblSTCTichLuy.Name = "lblSTCTichLuy";
+            lblSTCTichLuy.Size = new Size(78, 20);
+            lblSTCTichLuy.TabIndex = 7;
+            lblSTCTichLuy.Text = "Số Tín Chỉ";
+            // 
+            // lblSTCDat
+            // 
+            lblSTCDat.Anchor = AnchorStyles.None;
+            lblSTCDat.AutoSize = true;
+            lblSTCDat.Location = new Point(263, 114);
+            lblSTCDat.Name = "lblSTCDat";
+            lblSTCDat.Size = new Size(78, 20);
+            lblSTCDat.TabIndex = 7;
+            lblSTCDat.Text = "Số Tín Chỉ";
+            // 
+            // lblDiemHe4
+            // 
+            lblDiemHe4.Anchor = AnchorStyles.None;
+            lblDiemHe4.AutoSize = true;
+            lblDiemHe4.Location = new Point(260, 85);
+            lblDiemHe4.Name = "lblDiemHe4";
+            lblDiemHe4.Size = new Size(46, 20);
+            lblDiemHe4.TabIndex = 7;
+            lblDiemHe4.Text = "Điểm";
+            // 
+            // lblDiemHe10
+            // 
+            lblDiemHe10.Anchor = AnchorStyles.None;
+            lblDiemHe10.AutoSize = true;
+            lblDiemHe10.Location = new Point(263, 57);
+            lblDiemHe10.Name = "lblDiemHe10";
+            lblDiemHe10.Size = new Size(46, 20);
+            lblDiemHe10.TabIndex = 7;
+            lblDiemHe10.Text = "Điểm";
+            // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.Left;
+            label1.Anchor = AnchorStyles.None;
             label1.AutoSize = true;
             label1.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
-            label1.Location = new Point(25, 54);
+            label1.Location = new Point(37, 57);
             label1.Name = "label1";
             label1.Size = new Size(196, 18);
             label1.TabIndex = 6;
@@ -139,21 +228,32 @@
             // 
             // label5
             // 
-            label5.Anchor = AnchorStyles.Left;
+            label5.Anchor = AnchorStyles.None;
             label5.AutoSize = true;
             label5.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
-            label5.Location = new Point(25, 187);
+            label5.Location = new Point(37, 199);
             label5.Name = "label5";
             label5.Size = new Size(144, 18);
             label5.TabIndex = 2;
             label5.Text = "Xếp Loại Học Kỳ: ";
             // 
+            // label17
+            // 
+            label17.Anchor = AnchorStyles.None;
+            label17.AutoSize = true;
+            label17.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
+            label17.Location = new Point(37, 145);
+            label17.Name = "label17";
+            label17.Size = new Size(183, 18);
+            label17.TabIndex = 4;
+            label17.Text = "Tổng số tín chỉ tích lũy:";
+            // 
             // label4
             // 
-            label4.Anchor = AnchorStyles.Left;
+            label4.Anchor = AnchorStyles.None;
             label4.AutoSize = true;
             label4.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
-            label4.Location = new Point(25, 155);
+            label4.Location = new Point(37, 169);
             label4.Name = "label4";
             label4.Size = new Size(165, 18);
             label4.TabIndex = 3;
@@ -161,21 +261,21 @@
             // 
             // label3
             // 
-            label3.Anchor = AnchorStyles.Left;
+            label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
             label3.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
-            label3.Location = new Point(21, 125);
+            label3.Location = new Point(37, 114);
             label3.Name = "label3";
-            label3.Size = new Size(180, 18);
+            label3.Size = new Size(153, 18);
             label3.TabIndex = 4;
-            label3.Text = "Tổng số tín chỉ Học Kỳ";
+            label3.Text = "Tổng số tín chỉ đạt:";
             // 
             // label2
             // 
-            label2.Anchor = AnchorStyles.Left;
+            label2.Anchor = AnchorStyles.None;
             label2.AutoSize = true;
             label2.Font = new Font("Microsoft Sans Serif", 9F, FontStyle.Bold);
-            label2.Location = new Point(25, 87);
+            label2.Location = new Point(37, 85);
             label2.Name = "label2";
             label2.Size = new Size(187, 18);
             label2.TabIndex = 5;
@@ -205,8 +305,11 @@
             // 
             // dgvBangDiem
             // 
+            dgvBangDiem.AllowUserToAddRows = false;
+            dgvBangDiem.AllowUserToDeleteRows = false;
+            dgvBangDiem.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvBangDiem.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvBangDiem.Columns.AddRange(new DataGridViewColumn[] { MaKQ, MaLHP });
+            dgvBangDiem.Columns.AddRange(new DataGridViewColumn[] { MaMon, TenMon, SoTinChi, DiemGK, DiemCK, DiemThiLan1, DiemThiLan2, DiemTongKet, DiemChu, GhiChu });
             dgvBangDiem.Dock = DockStyle.Fill;
             dgvBangDiem.Location = new Point(3, 26);
             dgvBangDiem.Name = "dgvBangDiem";
@@ -214,21 +317,84 @@
             dgvBangDiem.Size = new Size(1668, 283);
             dgvBangDiem.TabIndex = 0;
             // 
-            // MaKQ
+            // MaMon
             // 
-            MaKQ.HeaderText = "STT";
-            MaKQ.MinimumWidth = 6;
-            MaKQ.Name = "MaKQ";
-            MaKQ.ReadOnly = true;
-            MaKQ.Width = 125;
+            MaMon.DataPropertyName = "MaMon";
+            MaMon.HeaderText = "Mã Môn";
+            MaMon.MinimumWidth = 6;
+            MaMon.Name = "MaMon";
+            MaMon.ReadOnly = true;
             // 
-            // MaLHP
+            // TenMon
             // 
-            MaLHP.HeaderText = "Mã Lớp HP";
-            MaLHP.MinimumWidth = 6;
-            MaLHP.Name = "MaLHP";
-            MaLHP.ReadOnly = true;
-            MaLHP.Width = 125;
+            TenMon.DataPropertyName = "TenMon";
+            TenMon.HeaderText = "Tên Môn";
+            TenMon.MinimumWidth = 6;
+            TenMon.Name = "TenMon";
+            TenMon.ReadOnly = true;
+            // 
+            // SoTinChi
+            // 
+            SoTinChi.DataPropertyName = "SoTinChi";
+            SoTinChi.HeaderText = "Số Tín Chỉ";
+            SoTinChi.MinimumWidth = 6;
+            SoTinChi.Name = "SoTinChi";
+            SoTinChi.ReadOnly = true;
+            // 
+            // DiemGK
+            // 
+            DiemGK.DataPropertyName = "DiemGK";
+            DiemGK.HeaderText = "Điểm GK";
+            DiemGK.MinimumWidth = 6;
+            DiemGK.Name = "DiemGK";
+            DiemGK.ReadOnly = true;
+            // 
+            // DiemCK
+            // 
+            DiemCK.DataPropertyName = "DiemCK";
+            DiemCK.HeaderText = "Điểm CK";
+            DiemCK.MinimumWidth = 6;
+            DiemCK.Name = "DiemCK";
+            DiemCK.ReadOnly = true;
+            // 
+            // DiemThiLan1
+            // 
+            DiemThiLan1.DataPropertyName = "DiemThiLan1";
+            DiemThiLan1.HeaderText = "Thi lần 1";
+            DiemThiLan1.MinimumWidth = 6;
+            DiemThiLan1.Name = "DiemThiLan1";
+            DiemThiLan1.ReadOnly = true;
+            // 
+            // DiemThiLan2
+            // 
+            DiemThiLan2.DataPropertyName = "DiemThiLan2";
+            DiemThiLan2.HeaderText = "Thi lần 2";
+            DiemThiLan2.MinimumWidth = 6;
+            DiemThiLan2.Name = "DiemThiLan2";
+            DiemThiLan2.ReadOnly = true;
+            // 
+            // DiemTongKet
+            // 
+            DiemTongKet.DataPropertyName = "DiemTongKet";
+            DiemTongKet.HeaderText = "Điểm TK(10)";
+            DiemTongKet.MinimumWidth = 6;
+            DiemTongKet.Name = "DiemTongKet";
+            DiemTongKet.ReadOnly = true;
+            // 
+            // DiemChu
+            // 
+            DiemChu.DataPropertyName = "DiemChu";
+            DiemChu.HeaderText = "Điểm chữ";
+            DiemChu.MinimumWidth = 6;
+            DiemChu.Name = "DiemChu";
+            DiemChu.ReadOnly = true;
+            // 
+            // GhiChu
+            // 
+            GhiChu.HeaderText = "Ghi chú";
+            GhiChu.MinimumWidth = 6;
+            GhiChu.Name = "GhiChu";
+            GhiChu.ReadOnly = true;
             // 
             // panel3
             // 
@@ -236,8 +402,9 @@
             panel3.Controls.Add(btnAdLamLai_SV);
             panel3.Controls.Add(btnAdLua_SV);
             panel3.Controls.Add(btnAdThem_SV);
+            panel3.Controls.Add(btnXuatExcel);
             panel3.Controls.Add(btnAdXoa_SV);
-            panel3.Controls.Add(button5);
+            panel3.Controls.Add(btnQuayLai);
             panel3.Dock = DockStyle.Top;
             panel3.Location = new Point(0, 319);
             panel3.Name = "panel3";
@@ -252,7 +419,7 @@
             btnAdSua_SV.FlatAppearance.MouseOverBackColor = Color.Blue;
             btnAdSua_SV.Image = (Image)resources.GetObject("btnAdSua_SV.Image");
             btnAdSua_SV.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdSua_SV.Location = new Point(739, 4);
+            btnAdSua_SV.Location = new Point(650, 3);
             btnAdSua_SV.Margin = new Padding(3, 4, 3, 4);
             btnAdSua_SV.Name = "btnAdSua_SV";
             btnAdSua_SV.Padding = new Padding(5, 0, 0, 0);
@@ -270,7 +437,7 @@
             btnAdLamLai_SV.FlatAppearance.MouseOverBackColor = Color.Blue;
             btnAdLamLai_SV.Image = (Image)resources.GetObject("btnAdLamLai_SV.Image");
             btnAdLamLai_SV.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdLamLai_SV.Location = new Point(509, 4);
+            btnAdLamLai_SV.Location = new Point(445, 3);
             btnAdLamLai_SV.Margin = new Padding(3, 4, 3, 4);
             btnAdLamLai_SV.Name = "btnAdLamLai_SV";
             btnAdLamLai_SV.Padding = new Padding(5, 0, 0, 0);
@@ -306,7 +473,7 @@
             btnAdThem_SV.FlatAppearance.MouseOverBackColor = Color.Blue;
             btnAdThem_SV.Image = (Image)resources.GetObject("btnAdThem_SV.Image");
             btnAdThem_SV.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdThem_SV.Location = new Point(290, 3);
+            btnAdThem_SV.Location = new Point(240, 3);
             btnAdThem_SV.Margin = new Padding(3, 4, 3, 4);
             btnAdThem_SV.Name = "btnAdThem_SV";
             btnAdThem_SV.Padding = new Padding(5, 0, 0, 0);
@@ -315,6 +482,24 @@
             btnAdThem_SV.Text = "Thêm ";
             btnAdThem_SV.UseVisualStyleBackColor = true;
             btnAdThem_SV.Click += btnAdThem_SV_Click;
+            // 
+            // btnXuatExcel
+            // 
+            btnXuatExcel.Anchor = AnchorStyles.Left;
+            btnXuatExcel.FlatAppearance.BorderColor = Color.Blue;
+            btnXuatExcel.FlatAppearance.MouseDownBackColor = Color.Blue;
+            btnXuatExcel.FlatAppearance.MouseOverBackColor = Color.Blue;
+            btnXuatExcel.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnXuatExcel.Image = (Image)resources.GetObject("btnXuatExcel.Image");
+            btnXuatExcel.ImageAlign = ContentAlignment.MiddleLeft;
+            btnXuatExcel.Location = new Point(1070, 4);
+            btnXuatExcel.Margin = new Padding(3, 4, 3, 4);
+            btnXuatExcel.Name = "btnXuatExcel";
+            btnXuatExcel.Padding = new Padding(5, 0, 0, 0);
+            btnXuatExcel.Size = new Size(199, 43);
+            btnXuatExcel.TabIndex = 141;
+            btnXuatExcel.Text = "Xuất File";
+            btnXuatExcel.UseVisualStyleBackColor = true;
             // 
             // btnAdXoa_SV
             // 
@@ -325,7 +510,7 @@
             btnAdXoa_SV.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnAdXoa_SV.Image = (Image)resources.GetObject("btnAdXoa_SV.Image");
             btnAdXoa_SV.ImageAlign = ContentAlignment.MiddleLeft;
-            btnAdXoa_SV.Location = new Point(981, 3);
+            btnAdXoa_SV.Location = new Point(855, 4);
             btnAdXoa_SV.Margin = new Padding(3, 4, 3, 4);
             btnAdXoa_SV.Name = "btnAdXoa_SV";
             btnAdXoa_SV.Padding = new Padding(5, 0, 0, 0);
@@ -335,16 +520,16 @@
             btnAdXoa_SV.UseVisualStyleBackColor = true;
             btnAdXoa_SV.Click += btnAdXoa_SV_Click;
             // 
-            // button5
+            // btnQuayLai
             // 
-            button5.Anchor = AnchorStyles.Right;
-            button5.Location = new Point(1545, 8);
-            button5.Name = "button5";
-            button5.Size = new Size(116, 36);
-            button5.TabIndex = 134;
-            button5.Text = "Quay lại";
-            button5.UseVisualStyleBackColor = true;
-            button5.Click += button5_Click;
+            btnQuayLai.Anchor = AnchorStyles.Right;
+            btnQuayLai.Location = new Point(1545, 8);
+            btnQuayLai.Name = "btnQuayLai";
+            btnQuayLai.Size = new Size(116, 36);
+            btnQuayLai.TabIndex = 134;
+            btnQuayLai.Text = "Quay lại";
+            btnQuayLai.UseVisualStyleBackColor = true;
+            btnQuayLai.Click += btnQuayLai_Click_1;
             // 
             // panel2
             // 
@@ -358,13 +543,19 @@
             // 
             // groupBox2
             // 
+            groupBox2.Controls.Add(txtDiemThiLan2);
+            groupBox2.Controls.Add(label19);
+            groupBox2.Controls.Add(txtDiemThiLan1);
+            groupBox2.Controls.Add(label18);
             groupBox2.Controls.Add(txtDiemCK);
             groupBox2.Controls.Add(label23);
             groupBox2.Controls.Add(txtDiemQT);
+            groupBox2.Controls.Add(txtGhichu);
             groupBox2.Controls.Add(txtSTC);
             groupBox2.Controls.Add(txtTenMon);
             groupBox2.Controls.Add(cboMaMon);
-            groupBox2.Controls.Add(comboBox1);
+            groupBox2.Controls.Add(cboHocKy);
+            groupBox2.Controls.Add(label20);
             groupBox2.Controls.Add(label10);
             groupBox2.Controls.Add(label9);
             groupBox2.Controls.Add(label8);
@@ -378,20 +569,58 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Thông tin điểm";
             // 
+            // txtDiemThiLan2
+            // 
+            txtDiemThiLan2.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDiemThiLan2.Location = new Point(810, 197);
+            txtDiemThiLan2.Margin = new Padding(3, 4, 3, 4);
+            txtDiemThiLan2.Name = "txtDiemThiLan2";
+            txtDiemThiLan2.Size = new Size(329, 27);
+            txtDiemThiLan2.TabIndex = 16;
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label19.Location = new Point(628, 207);
+            label19.Name = "label19";
+            label19.Size = new Size(126, 20);
+            label19.TabIndex = 15;
+            label19.Text = "Điểm thi lần 2";
+            // 
+            // txtDiemThiLan1
+            // 
+            txtDiemThiLan1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtDiemThiLan1.Location = new Point(229, 200);
+            txtDiemThiLan1.Margin = new Padding(3, 4, 3, 4);
+            txtDiemThiLan1.Name = "txtDiemThiLan1";
+            txtDiemThiLan1.Size = new Size(329, 27);
+            txtDiemThiLan1.TabIndex = 16;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label18.Location = new Point(47, 200);
+            label18.Name = "label18";
+            label18.Size = new Size(126, 20);
+            label18.TabIndex = 15;
+            label18.Text = "Điểm thi lần 1";
+            // 
             // txtDiemCK
             // 
             txtDiemCK.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtDiemCK.Location = new Point(229, 252);
+            txtDiemCK.Location = new Point(810, 158);
             txtDiemCK.Margin = new Padding(3, 4, 3, 4);
             txtDiemCK.Name = "txtDiemCK";
-            txtDiemCK.Size = new Size(910, 27);
+            txtDiemCK.Size = new Size(329, 27);
             txtDiemCK.TabIndex = 16;
             // 
             // label23
             // 
             label23.AutoSize = true;
             label23.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label23.Location = new Point(47, 256);
+            label23.Location = new Point(628, 162);
             label23.Name = "label23";
             label23.Size = new Size(117, 20);
             label23.TabIndex = 15;
@@ -400,16 +629,25 @@
             // txtDiemQT
             // 
             txtDiemQT.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtDiemQT.Location = new Point(229, 211);
+            txtDiemQT.Location = new Point(229, 158);
             txtDiemQT.Margin = new Padding(3, 4, 3, 4);
             txtDiemQT.Name = "txtDiemQT";
-            txtDiemQT.Size = new Size(910, 27);
+            txtDiemQT.Size = new Size(329, 27);
             txtDiemQT.TabIndex = 12;
+            // 
+            // txtGhichu
+            // 
+            txtGhichu.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            txtGhichu.Location = new Point(229, 244);
+            txtGhichu.Margin = new Padding(3, 4, 3, 4);
+            txtGhichu.Name = "txtGhichu";
+            txtGhichu.Size = new Size(910, 27);
+            txtGhichu.TabIndex = 13;
             // 
             // txtSTC
             // 
             txtSTC.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtSTC.Location = new Point(229, 171);
+            txtSTC.Location = new Point(229, 118);
             txtSTC.Margin = new Padding(3, 4, 3, 4);
             txtSTC.Name = "txtSTC";
             txtSTC.Size = new Size(910, 27);
@@ -418,7 +656,7 @@
             // txtTenMon
             // 
             txtTenMon.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            txtTenMon.Location = new Point(229, 130);
+            txtTenMon.Location = new Point(229, 77);
             txtTenMon.Margin = new Padding(3, 4, 3, 4);
             txtTenMon.Name = "txtTenMon";
             txtTenMon.Size = new Size(910, 27);
@@ -428,26 +666,38 @@
             // 
             cboMaMon.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             cboMaMon.FormattingEnabled = true;
-            cboMaMon.Location = new Point(229, 86);
+            cboMaMon.Location = new Point(547, 41);
             cboMaMon.Margin = new Padding(3, 4, 3, 4);
             cboMaMon.Name = "cboMaMon";
-            cboMaMon.Size = new Size(910, 28);
+            cboMaMon.Size = new Size(592, 28);
             cboMaMon.TabIndex = 10;
+            cboMaMon.SelectedIndexChanged += cboMaMon_SelectedIndexChanged;
             // 
-            // comboBox1
+            // cboHocKy
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(229, 37);
-            comboBox1.Margin = new Padding(3, 4, 3, 4);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(88, 28);
-            comboBox1.TabIndex = 11;
+            cboHocKy.FormattingEnabled = true;
+            cboHocKy.Location = new Point(229, 37);
+            cboHocKy.Margin = new Padding(3, 4, 3, 4);
+            cboHocKy.Name = "cboHocKy";
+            cboHocKy.Size = new Size(88, 28);
+            cboHocKy.TabIndex = 11;
+            cboHocKy.SelectedIndexChanged += cboHocKy_SelectedIndexChanged;
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label20.Location = new Point(47, 244);
+            label20.Name = "label20";
+            label20.Size = new Size(74, 20);
+            label20.TabIndex = 6;
+            label20.Text = "Ghi chú";
             // 
             // label10
             // 
             label10.AutoSize = true;
             label10.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label10.Location = new Point(47, 214);
+            label10.Location = new Point(47, 158);
             label10.Name = "label10";
             label10.Size = new Size(132, 20);
             label10.TabIndex = 5;
@@ -457,7 +707,7 @@
             // 
             label9.AutoSize = true;
             label9.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label9.Location = new Point(47, 171);
+            label9.Location = new Point(47, 118);
             label9.Name = "label9";
             label9.Size = new Size(89, 20);
             label9.TabIndex = 6;
@@ -467,7 +717,7 @@
             // 
             label8.AutoSize = true;
             label8.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label8.Location = new Point(47, 130);
+            label8.Location = new Point(47, 77);
             label8.Name = "label8";
             label8.Size = new Size(81, 20);
             label8.TabIndex = 7;
@@ -477,7 +727,7 @@
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Microsoft Sans Serif", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(47, 86);
+            label7.Location = new Point(365, 41);
             label7.Name = "label7";
             label7.Size = new Size(75, 20);
             label7.TabIndex = 8;
@@ -678,14 +928,14 @@
         private TextBox txtSTC;
         private TextBox txtTenMon;
         private ComboBox cboMaMon;
-        private ComboBox comboBox1;
+        private ComboBox cboHocKy;
         private Label label10;
         private Label label9;
         private Label label8;
         private Label label7;
         private Label label6;
         private Panel panel3;
-        private Button button5;
+        private Button btnQuayLai;
         private Panel panel5;
         private Panel panel4;
         private GroupBox groupBox3;
@@ -701,7 +951,29 @@
         private Button btnAdLua_SV;
         private Button btnAdThem_SV;
         private Button btnAdXoa_SV;
-        private DataGridViewTextBoxColumn MaKQ;
-        private DataGridViewTextBoxColumn MaLHP;
+        private Button btnXuatExcel;
+        private Label lblXepLoaiHK;
+        private Label lblSoMon;
+        private Label lblSTCDat;
+        private Label lblDiemHe4;
+        private Label lblDiemHe10;
+        private Label lblSTCTichLuy;
+        private Label label17;
+        private DataGridViewTextBoxColumn MaMon;
+        private DataGridViewTextBoxColumn TenMon;
+        private DataGridViewTextBoxColumn SoTinChi;
+        private DataGridViewTextBoxColumn DiemGK;
+        private DataGridViewTextBoxColumn DiemCK;
+        private DataGridViewTextBoxColumn DiemThiLan1;
+        private DataGridViewTextBoxColumn DiemThiLan2;
+        private DataGridViewTextBoxColumn DiemTongKet;
+        private DataGridViewTextBoxColumn DiemChu;
+        private TextBox txtDiemThiLan2;
+        private Label label19;
+        private TextBox txtDiemThiLan1;
+        private Label label18;
+        private TextBox txtGhichu;
+        private Label label20;
+        private DataGridViewTextBoxColumn GhiChu;
     }
 }

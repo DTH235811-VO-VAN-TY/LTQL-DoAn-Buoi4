@@ -82,6 +82,10 @@
             SDT = new DataGridViewTextBoxColumn();
             MaLop = new DataGridViewTextBoxColumn();
             CCCD = new DataGridViewTextBoxColumn();
+            radGiam = new RadioButton();
+            radTang = new RadioButton();
+            cboKieuSX = new ComboBox();
+            label14 = new Label();
             panelInput.SuspendLayout();
             groupBoxInfo.SuspendLayout();
             panelSearch.SuspendLayout();
@@ -468,6 +472,10 @@
             // 
             // groupBoxSearch
             // 
+            groupBoxSearch.Controls.Add(radGiam);
+            groupBoxSearch.Controls.Add(radTang);
+            groupBoxSearch.Controls.Add(cboKieuSX);
+            groupBoxSearch.Controls.Add(label14);
             groupBoxSearch.Controls.Add(txtAdTuKhoa_SV);
             groupBoxSearch.Controls.Add(label11);
             groupBoxSearch.Controls.Add(label12);
@@ -677,6 +685,45 @@
             CCCD.ReadOnly = true;
             CCCD.Width = 179;
             // 
+            // radGiam
+            // 
+            radGiam.AutoSize = true;
+            radGiam.Location = new Point(1562, 23);
+            radGiam.Name = "radGiam";
+            radGiam.Size = new Size(67, 24);
+            radGiam.TabIndex = 88;
+            radGiam.TabStop = true;
+            radGiam.Text = "Giảm";
+            radGiam.UseVisualStyleBackColor = true;
+            // 
+            // radTang
+            // 
+            radTang.AutoSize = true;
+            radTang.Location = new Point(1478, 23);
+            radTang.Name = "radTang";
+            radTang.Size = new Size(64, 24);
+            radTang.TabIndex = 89;
+            radTang.TabStop = true;
+            radTang.Text = "Tăng";
+            radTang.UseVisualStyleBackColor = true;
+            // 
+            // cboKieuSX
+            // 
+            cboKieuSX.FormattingEnabled = true;
+            cboKieuSX.Location = new Point(1311, 25);
+            cboKieuSX.Name = "cboKieuSX";
+            cboKieuSX.Size = new Size(151, 28);
+            cboKieuSX.TabIndex = 87;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(1184, 27);
+            label14.Name = "label14";
+            label14.Size = new Size(104, 20);
+            label14.TabIndex = 86;
+            label14.Text = "Kiểu Sắp Xếp:";
+            // 
             // UC_SinhVien
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
@@ -753,5 +800,9 @@
         private DataGridViewTextBoxColumn SDT;
         private DataGridViewTextBoxColumn MaLop;
         private DataGridViewTextBoxColumn CCCD;
+        private RadioButton radGiam;
+        private RadioButton radTang;
+        private ComboBox cboKieuSX;
+        private Label label14;
     }
 }

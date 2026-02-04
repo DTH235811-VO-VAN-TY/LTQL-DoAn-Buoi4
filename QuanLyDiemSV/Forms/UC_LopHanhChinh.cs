@@ -1,25 +1,265 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using QuanLyDiemSV.Data; // Namespace chứa Context và Models
+using QuanLyDiemSV.Forms; // Namespace chứa FrmNganh
 
 namespace QuanLyDiemSV.Forms
 {
     public partial class UC_LopHanhChinh : UserControl
     {
+        // 1. Khởi tạo Context và BindingSource
+        QLDSVDbContext context = new QLDSVDbContext();
+        BindingSource bsLop = new BindingSource();
+        bool xuLyThem = false;
+
         public UC_LopHanhChinh()
         {
             InitializeComponent();
+            this.Load += UC_LopHanhChinh_Load;
         }
 
-        private void groupBoxInfo_Enter(object sender, EventArgs e)
+        private void UC_LopHanhChinh_Load(object sender, EventArgs e)
         {
-
+            BatTatChucNang(false);
+            LoadComboBoxData();
+            LoadData();
         }
+
+        #region 1. HÀM HỖ TRỢ VÀ LOAD DỮ LIỆU
+
+        private void BatTatChucNang(bool giaTri)
+        {
+            // Các nút lưu/hủy
+            btnLuu.Enabled = giaTri;
+            btnLamLai.Enabled = giaTri;
+
+            // Các ô nhập liệu
+            txtMaLop.Enabled = giaTri;
+            txtTenLop.Enabled = giaTri;
+            txtNienKhoa.Enabled = giaTri;
+
+            cboNganh.Enabled = giaTri; // Đã sửa tên biến từ cboHocVi -> cboNganh
+            cboGCVN.Enabled = giaTri;  // Đã thêm xử lý cho GVCN
+
+            btnAddNganh.Enabled = giaTri; // Nút thêm nhanh ngành
+
+            // Các nút chức năng
+            btnThem.Enabled = !giaTri;
+            btnSua.Enabled = !giaTri;
+            btnXoa.Enabled = !giaTri;
+        }
+
+        private void LoadComboBoxData()
+        {
+            try
+            {
+                // 1. Load danh sách NGÀNH vào cboNganh
+                // Dùng .ToList() để ngắt kết nối query, tránh lỗi binding
+                var listNganh = context.Nganh.ToList();
+                cboNganh.DataSource = listNganh;
+                cboNganh.DisplayMember = "TenNganh";
+                cboNganh.ValueMember = "MaNganh";
+                cboNganh.SelectedIndex = -1;
+
+                // 2. Load danh sách GIẢNG VIÊN vào cboGCVN (Giáo viên chủ nhiệm)
+                var listGV = context.GiangVien.ToList();
+                cboGCVN.DataSource = listGV;
+                cboGCVN.DisplayMember = "HoTen";
+                cboGCVN.ValueMember = "MaGV";
+                cboGCVN.SelectedIndex = -1;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải danh mục: " + ex.Message);
+            }
+        }
+
+        private void LoadData()
+        {
+            try
+            {
+                // --- SỬA ĐOẠN NÀY: Dùng LINQ để lấy Tên Giảng Viên ---
+                var listLop = (from lop in context.LopHanhChinh
+                               join gv in context.GiangVien on lop.MaGVCN equals gv.MaGV into groupGV
+                               from subGV in groupGV.DefaultIfEmpty() // Left Join (Để lớp chưa có GV vẫn hiện ra)
+                               select new
+                               {
+                                   lop.MaLop,
+                                   lop.TenLop,
+                                   lop.NienKhoa,
+                                   lop.MaNganh,
+                                   lop.MaGVCN, // Vẫn giữ Mã GV để Binding vào ComboBox
+
+                                   // Tạo cột mới hiển thị Tên GV
+                                   TenGV = (subGV == null) ? "Chưa phân công" : subGV.HoTen
+                               }).ToList();
+
+                // Gán dữ liệu vào BindingSource
+                bsLop.DataSource = listLop;
+
+                // Xóa Binding cũ
+                txtMaLop.DataBindings.Clear();
+                txtTenLop.DataBindings.Clear();
+                txtNienKhoa.DataBindings.Clear();
+                cboNganh.DataBindings.Clear();
+                cboGCVN.DataBindings.Clear();
+
+                // Tạo Binding mới
+                txtMaLop.DataBindings.Add("Text", bsLop, "MaLop", true, DataSourceUpdateMode.Never);
+                txtTenLop.DataBindings.Add("Text", bsLop, "TenLop", true, DataSourceUpdateMode.Never);
+                txtNienKhoa.DataBindings.Add("Text", bsLop, "NienKhoa", true, DataSourceUpdateMode.Never);
+
+                // Binding ComboBox (Vẫn dùng Mã để chọn đúng dòng trong ComboBox)
+                cboNganh.DataBindings.Add("SelectedValue", bsLop, "MaNganh", true, DataSourceUpdateMode.Never);
+                cboGCVN.DataBindings.Add("SelectedValue", bsLop, "MaGVCN", true, DataSourceUpdateMode.Never);
+
+                // Hiển thị lên Grid
+                dgvLopHanhChinh.AutoGenerateColumns = false;
+                dgvLopHanhChinh.DataSource = bsLop;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi tải dữ liệu: " + ex.Message);
+            }
+        }
+
+        #endregion
+
+        #region 2. XỬ LÝ NÚT BẤM (CRUD)
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            xuLyThem = true;
+            BatTatChucNang(true);
+
+            // Xóa trắng dữ liệu nhập
+            txtMaLop.Clear();
+            txtTenLop.Clear();
+            txtNienKhoa.Clear();
+            cboNganh.SelectedIndex = -1;
+            cboGCVN.SelectedIndex = -1;
+
+            txtMaLop.Focus();
+        }
+
+        private void btnSua_Click(object sender, EventArgs e)
+        {
+            if (bsLop.Current == null)
+            {
+                MessageBox.Show("Vui lòng chọn lớp cần sửa!");
+                return;
+            }
+
+            xuLyThem = false;
+            BatTatChucNang(true);
+            txtMaLop.Enabled = false; // Khóa chính không được sửa
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            if (bsLop.Current == null) return;
+            var lop = (LopHanhChinh)bsLop.Current;
+
+            if (MessageBox.Show($"Bạn có chắc muốn xóa lớp {lop.TenLop}?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                try
+                {
+                    context.LopHanhChinh.Remove(lop);
+                    context.SaveChanges();
+                    LoadData();
+                    MessageBox.Show("Xóa thành công!");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Không thể xóa (Lớp này đang có sinh viên): " + ex.Message);
+                }
+            }
+        }
+
+        private void btnLuu_Click(object sender, EventArgs e)
+        {
+            // Kiểm tra nhập liệu
+            if (string.IsNullOrWhiteSpace(txtMaLop.Text) || string.IsNullOrWhiteSpace(txtTenLop.Text))
+            {
+                MessageBox.Show("Vui lòng nhập Mã lớp và Tên lớp!");
+                return;
+            }
+            if (cboNganh.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn Ngành!");
+                return;
+            }
+
+            try
+            {
+                if (xuLyThem) // --- THÊM MỚI ---
+                {
+                    // Check trùng mã
+                    if (context.LopHanhChinh.Any(x => x.MaLop == txtMaLop.Text.Trim()))
+                    {
+                        MessageBox.Show("Mã lớp đã tồn tại!");
+                        return;
+                    }
+
+                    LopHanhChinh lop = new LopHanhChinh();
+                    lop.MaLop = txtMaLop.Text.Trim();
+                    lop.TenLop = txtTenLop.Text.Trim();
+                    lop.NienKhoa = txtNienKhoa.Text.Trim();
+                    lop.MaNganh = cboNganh.SelectedValue.ToString();
+
+                    // Lưu MaGV (GVCN) - Nếu có chọn thì lưu, không thì để null
+                    if (cboGCVN.SelectedValue != null)
+                        lop.MaGVCN = cboGCVN.SelectedValue.ToString();
+
+                    context.LopHanhChinh.Add(lop);
+                }
+                else // --- CẬP NHẬT (SỬA) ---
+                {
+                    var lop = context.LopHanhChinh.Find(txtMaLop.Text.Trim());
+                    if (lop != null)
+                    {
+                        lop.TenLop = txtTenLop.Text.Trim();
+                        lop.NienKhoa = txtNienKhoa.Text.Trim();
+                        lop.MaNganh = cboNganh.SelectedValue.ToString();
+
+                        if (cboGCVN.SelectedValue != null)
+                            lop.MaGVCN = cboGCVN.SelectedValue.ToString();
+                        else
+                            lop.MaGVCN = null; // Nếu bỏ chọn GVCN
+
+                        context.LopHanhChinh.Update(lop);
+                    }
+                }
+
+                context.SaveChanges();
+                LoadData();
+                BatTatChucNang(false);
+                MessageBox.Show("Lưu thành công!");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi lưu dữ liệu: " + ex.Message);
+            }
+        }
+
+        private void btnLamLai_Click(object sender, EventArgs e)
+        {
+            BatTatChucNang(false);
+            bsLop.ResetBindings(false); // Reset lại giá trị cũ
+        }
+
+        // Nút thêm nhanh Ngành (nút nhỏ bên cạnh combobox)
+        private void btnAddNganh_Click(object sender, EventArgs e)
+        {
+            FrmNganh frm = new FrmNganh();
+            frm.ShowDialog();
+            // Sau khi tắt form ngành thì load lại combobox để thấy ngành mới
+            LoadComboBoxData();
+        }
+
+        #endregion
     }
 }

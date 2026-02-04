@@ -1,26 +1,91 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using GUI; // Namespace của UC_Diem
+using QuanLyDiemSV.Forms; // Namespace của UC_Container
 
 namespace QuanLyDiemSV
 {
     public partial class Form1 : Form
     {
+        Color normalColor = Color.FromArgb(52, 73, 94);
+        Color activeColor = Color.DodgerBlue;
+        private Button currentButton;
+
         public Form1()
         {
             InitializeComponent();
-        }
-        // --- CÁC HÀM XỬ LÝ MÀU SẮC (Vừa thêm ở Bước 1) ---
-        Color normalColor = Color.FromArgb(52, 73, 94);
-        Color activeColor = Color.DodgerBlue; // Hoặc Color.FromArgb(41, 128, 185)
-        private Button? currentButton;
 
+            // --- SỬA LỖI Ở ĐÂY: KẾT NỐI 2 FORM CON ---
+            // Phần này phải viết trong Constructor (sau InitializeComponent)
+
+            // 1. Khi bấm "Nhập điểm" ở Container -> Chuyển dữ liệu sang uC_Diem1
+            uC_QuanLyDiem_Container1.OnChuyenManHinhNhapDiem += (maSV) =>
+            {
+                // Truyền mã SV sang
+                uC_Diem1.LoadThongTinSinhVien(maSV);
+
+                // Hiển thị uC_Diem1 lên
+                uC_Diem1.Visible = true;
+                uC_Diem1.BringToFront();
+
+                // Ẩn Container đi (nếu muốn)
+                uC_QuanLyDiem_Container1.Visible = false;
+            };
+
+            // 2. Khi bấm "Quay lại" ở uC_Diem1 -> Hiện lại Container
+            uC_Diem1.OnQuayLai += () =>
+            {
+                uC_QuanLyDiem_Container1.Visible = true;
+                uC_QuanLyDiem_Container1.BringToFront();
+                uC_Diem1.Visible = false;
+            };
+        }
+
+        // --- CÁC NÚT MENU ---
+
+        private void btnDiemSV_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+
+            // Mặc định hiện Container trước, ẩn Diem đi
+            uC_QuanLyDiem_Container1.Visible = true;
+            uC_QuanLyDiem_Container1.BringToFront();
+            uC_Diem1.Visible = false;
+        }
+
+        // ... Các nút khác giữ nguyên code BringToFront của bạn ...
+        private void btnSinhVien_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_SinhVien1.BringToFront();
+        }
+
+        private void btnMonHoc_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_MonHoc1.BringToFront();
+        }
+
+        private void btnGiangVien_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_GiangVien1.BringToFront();
+        }
+
+        private void btnLopHanhChinh_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_LopHanhChinh1.BringToFront();
+        }
+
+        private void btnLopHocPhan_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_LopHocPhan1.BringToFront();
+        }
+
+        // --- XỬ LÝ MÀU SẮC ---
         private void ActivateButton(object btnSender)
         {
             if (btnSender != null)
@@ -45,42 +110,10 @@ namespace QuanLyDiemSV
             }
         }
 
-        private void btnLopHocPhan_Click(object sender, EventArgs e)
+        private void btnTaiKhoan_Click(object sender, EventArgs e)
         {
             ActivateButton(sender);
-            uC_LopHocPhan1.BringToFront();
-        }
-
-        private void btnMonHoc_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            uC_MonHoc1.BringToFront();
-        }
-
-        private void btnSinhVien_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            uC_SinhVien1.BringToFront();
-        }
-
-        private void btnDiemSV_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            // uC_Diem1.BringToFront();
-            uC_QuanLyDiem_Container1.BringToFront();
-        }
-
-        private void btnGiangVien_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            uC_GiangVien1.BringToFront();
-
-        }
-
-        private void btnLopHanhChinh_Click(object sender, EventArgs e)
-        {
-            ActivateButton(sender);
-            uC_LopHanhChinh1.BringToFront();
+            uC_TaiKhoan1.BringToFront();
         }
     }
 }

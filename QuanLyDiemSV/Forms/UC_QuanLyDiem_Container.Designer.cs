@@ -42,12 +42,22 @@
             groupBox2 = new GroupBox();
             radioButton1 = new RadioButton();
             panel3 = new Panel();
+            groupBox3 = new GroupBox();
             dgvDanhSachSV = new DataGridView();
+            MaSV = new DataGridViewTextBoxColumn();
+            HoTen = new DataGridViewTextBoxColumn();
+            NgaySinh = new DataGridViewTextBoxColumn();
+            GioiTinh = new DataGridViewTextBoxColumn();
+            LopHanhChinh = new DataGridViewTextBoxColumn();
+            MaKhoa = new DataGridViewTextBoxColumn();
+            TrangThai = new DataGridViewTextBoxColumn();
+            ThaoTac = new DataGridViewTextBoxColumn();
             panel1.SuspendLayout();
             groupBox1.SuspendLayout();
             panel2.SuspendLayout();
             groupBox2.SuspendLayout();
             panel3.SuspendLayout();
+            groupBox3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachSV).BeginInit();
             SuspendLayout();
             // 
@@ -190,7 +200,7 @@
             // 
             // panel3
             // 
-            panel3.Controls.Add(dgvDanhSachSV);
+            panel3.Controls.Add(groupBox3);
             panel3.Dock = DockStyle.Fill;
             panel3.Location = new Point(0, 207);
             panel3.Name = "panel3";
@@ -198,17 +208,95 @@
             panel3.Size = new Size(1694, 747);
             panel3.TabIndex = 2;
             // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(dgvDanhSachSV);
+            groupBox3.Dock = DockStyle.Fill;
+            groupBox3.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            groupBox3.Location = new Point(10, 0);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(1674, 747);
+            groupBox3.TabIndex = 0;
+            groupBox3.TabStop = false;
+            groupBox3.Text = "Danh sách sinh viên";
+            // 
             // dgvDanhSachSV
             // 
+            dgvDanhSachSV.AllowUserToAddRows = false;
+            dgvDanhSachSV.AllowUserToDeleteRows = false;
             dgvDanhSachSV.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             dgvDanhSachSV.BackgroundColor = SystemColors.ButtonHighlight;
             dgvDanhSachSV.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dgvDanhSachSV.Columns.AddRange(new DataGridViewColumn[] { MaSV, HoTen, NgaySinh, GioiTinh, LopHanhChinh, MaKhoa, TrangThai, ThaoTac });
             dgvDanhSachSV.Dock = DockStyle.Fill;
-            dgvDanhSachSV.Location = new Point(10, 0);
+            dgvDanhSachSV.Location = new Point(3, 26);
             dgvDanhSachSV.Name = "dgvDanhSachSV";
             dgvDanhSachSV.RowHeadersWidth = 51;
-            dgvDanhSachSV.Size = new Size(1674, 747);
-            dgvDanhSachSV.TabIndex = 0;
+            dgvDanhSachSV.Size = new Size(1668, 718);
+            dgvDanhSachSV.TabIndex = 1;
+            // 
+            // MaSV
+            // 
+            MaSV.DataPropertyName = "MaSV";
+            MaSV.HeaderText = "Mã SV";
+            MaSV.MinimumWidth = 6;
+            MaSV.Name = "MaSV";
+            MaSV.ReadOnly = true;
+            // 
+            // HoTen
+            // 
+            HoTen.DataPropertyName = "HoTen";
+            HoTen.HeaderText = "Họ Tên";
+            HoTen.MinimumWidth = 6;
+            HoTen.Name = "HoTen";
+            HoTen.ReadOnly = true;
+            // 
+            // NgaySinh
+            // 
+            NgaySinh.DataPropertyName = "NgaySinh";
+            NgaySinh.HeaderText = "Ngày Sinh";
+            NgaySinh.MinimumWidth = 6;
+            NgaySinh.Name = "NgaySinh";
+            NgaySinh.ReadOnly = true;
+            // 
+            // GioiTinh
+            // 
+            GioiTinh.DataPropertyName = "GioiTinh";
+            GioiTinh.HeaderText = "GioiTinh";
+            GioiTinh.MinimumWidth = 6;
+            GioiTinh.Name = "GioiTinh";
+            GioiTinh.ReadOnly = true;
+            // 
+            // LopHanhChinh
+            // 
+            LopHanhChinh.DataPropertyName = "LopHanhChinh";
+            LopHanhChinh.HeaderText = "Lớp";
+            LopHanhChinh.MinimumWidth = 6;
+            LopHanhChinh.Name = "LopHanhChinh";
+            LopHanhChinh.ReadOnly = true;
+            // 
+            // MaKhoa
+            // 
+            MaKhoa.DataPropertyName = "MaKhoa";
+            MaKhoa.HeaderText = "Khoa";
+            MaKhoa.MinimumWidth = 6;
+            MaKhoa.Name = "MaKhoa";
+            MaKhoa.ReadOnly = true;
+            // 
+            // TrangThai
+            // 
+            TrangThai.DataPropertyName = "TrangThai";
+            TrangThai.HeaderText = "Trạng Thái";
+            TrangThai.MinimumWidth = 6;
+            TrangThai.Name = "TrangThai";
+            TrangThai.ReadOnly = true;
+            // 
+            // ThaoTac
+            // 
+            ThaoTac.HeaderText = "Thao Tác";
+            ThaoTac.MinimumWidth = 6;
+            ThaoTac.Name = "ThaoTac";
+            ThaoTac.ReadOnly = true;
             // 
             // UC_QuanLyDiem_Container
             // 
@@ -226,6 +314,7 @@
             groupBox2.ResumeLayout(false);
             groupBox2.PerformLayout();
             panel3.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dgvDanhSachSV).EndInit();
             ResumeLayout(false);
         }
@@ -246,6 +335,15 @@
         private GroupBox groupBox2;
         private RadioButton radioButton1;
         private Panel panel3;
+        private GroupBox groupBox3;
         private DataGridView dgvDanhSachSV;
+        private DataGridViewTextBoxColumn MaSV;
+        private DataGridViewTextBoxColumn HoTen;
+        private DataGridViewTextBoxColumn NgaySinh;
+        private DataGridViewTextBoxColumn GioiTinh;
+        private DataGridViewTextBoxColumn LopHanhChinh;
+        private DataGridViewTextBoxColumn MaKhoa;
+        private DataGridViewTextBoxColumn TrangThai;
+        private DataGridViewTextBoxColumn ThaoTac;
     }
 }

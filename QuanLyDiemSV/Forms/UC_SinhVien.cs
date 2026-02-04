@@ -14,14 +14,14 @@ namespace QuanLyDiemSV
 {
     public partial class UC_SinhVien : UserControl
     {
-        // Khởi tạo ngữ cảnh Database trực tiếp (Theo cách làm của PDF hướng dẫn)
+        // Khởi tạo ngữ cảnh Database trực tiếp
         QLDSVDbContext context = new QLDSVDbContext();
         bool xulyThem = false;
 
         public UC_SinhVien()
         {
             InitializeComponent();
-            // Đăng ký sự kiện Load (Dù bạn đã có trong Designer, viết ở đây cho chắc chắn)
+            // Đăng ký sự kiện Load
             this.Load += UC_SinhVien_Load;
         }
 
@@ -46,7 +46,6 @@ namespace QuanLyDiemSV
             txtAdSV_Email.Enabled = giaTri;
 
             // Các ô này chỉ để hiển thị thông tin phụ, nên khóa lại (readonly)
-            // Hoặc mở ra nếu bạn muốn cho nhập tay (tùy logic)
             txtAdSV_Khoa.Enabled = false;
             txtAdSV_NienKhoa.Enabled = false;
             txtAdSV_ChuyenNganh.Enabled = false;
@@ -60,7 +59,7 @@ namespace QuanLyDiemSV
             btnAdXoa_SV.Enabled = !giaTri;
         }
 
-        #region 1. CÁC HÀM HỖ TRỢ (HELPER) - ĐÃ BỎ COMMENT VÀ SỬA LẠI
+       
 
         // Hàm tải danh sách Lớp Học vào ComboBox
         private void LoadComboBoxLop()
@@ -68,8 +67,6 @@ namespace QuanLyDiemSV
             try
             {
                 // Lấy danh sách lớp trực tiếp từ Context
-                // Lưu ý: Tên bảng trong context của bạn có thể là LopHanhChinh hoặc LopHanhChinhs (có s)
-                // Hãy gõ context. và xem gợi ý của Visual Studio
                 var listLop = context.LopHanhChinh.ToList();
 
                 cboAdSV_TenLop.DataSource = listLop;
@@ -143,7 +140,7 @@ namespace QuanLyDiemSV
             txtAdSV_DiaChi.Clear();
         }
 
-        #endregion
+       
 
         #region 2. XỬ LÝ SỰ KIỆN NÚT BẤM (EVENTS)
 
