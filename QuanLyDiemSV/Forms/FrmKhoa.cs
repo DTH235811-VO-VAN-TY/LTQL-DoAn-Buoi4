@@ -20,6 +20,7 @@ namespace QuanLyDiemSV.Forms
         }
         QLDSVDbContext context = new QLDSVDbContext();
         bool xuLyThem = false;
+        public event EventHandler DataSaved;
 
         private void BatTatChucNang(bool giaTri)
         {
@@ -120,7 +121,10 @@ namespace QuanLyDiemSV.Forms
                 }
                 context.SaveChanges();
                 LoadData();
+                DataSaved?.Invoke(this, EventArgs.Empty);
+                MessageBox.Show("Lưu dữ liệu thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 BatTatChucNang(false);
+               
             }
             catch (Exception ex)
             {

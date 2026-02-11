@@ -28,9 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
-           
             label1 = new Label();
             label2 = new Label();
             panel1 = new Panel();
@@ -39,15 +37,11 @@
             button1 = new Button();
             SuspendLayout();
             // 
-            // guna2Elipse1
-            // 
-          
-            // 
             // label1
             // 
             label1.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             label1.Image = (Image)resources.GetObject("label1.Image");
-            label1.Location = new Point(817, 9);
+            label1.Location = new Point(1073, 9);
             label1.Name = "label1";
             label1.Size = new Size(37, 39);
             label1.TabIndex = 0;
@@ -58,7 +52,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
             label2.ForeColor = SystemColors.ControlDark;
-            label2.Location = new Point(493, 67);
+            label2.Location = new Point(637, 77);
             label2.Name = "label2";
             label2.Size = new Size(200, 41);
             label2.TabIndex = 1;
@@ -70,14 +64,14 @@
             panel1.Dock = DockStyle.Left;
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(334, 502);
+            panel1.Size = new Size(334, 712);
             panel1.TabIndex = 2;
             // 
             // textBox1
             // 
             textBox1.BackColor = SystemColors.Desktop;
             textBox1.ForeColor = SystemColors.ScrollBar;
-            textBox1.Location = new Point(366, 152);
+            textBox1.Location = new Point(508, 236);
             textBox1.Name = "textBox1";
             textBox1.Size = new Size(444, 27);
             textBox1.TabIndex = 3;
@@ -87,7 +81,7 @@
             // 
             textBox2.BackColor = SystemColors.Desktop;
             textBox2.ForeColor = SystemColors.ScrollBar;
-            textBox2.Location = new Point(366, 211);
+            textBox2.Location = new Point(508, 310);
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(444, 27);
             textBox2.TabIndex = 3;
@@ -98,19 +92,19 @@
             button1.BackColor = Color.Red;
             button1.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             button1.ForeColor = Color.White;
-            button1.Location = new Point(370, 293);
+            button1.Location = new Point(512, 407);
             button1.Name = "button1";
             button1.Size = new Size(440, 54);
             button1.TabIndex = 4;
             button1.Text = "Đăng Nhập";
             button1.UseVisualStyleBackColor = false;
             // 
-            // Form1
+            // FrmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.Desktop;
-            ClientSize = new Size(866, 502);
+            ClientSize = new Size(1122, 712);
             Controls.Add(button1);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
@@ -118,7 +112,7 @@
             Controls.Add(label2);
             Controls.Add(label1);
             FormBorderStyle = FormBorderStyle.Fixed3D;
-            Name = "Form1";
+            Name = "FrmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
@@ -127,7 +121,7 @@
 
         #endregion
 
-        
+
         private Label label1;
         private TextBox textBox2;
         private TextBox textBox1;

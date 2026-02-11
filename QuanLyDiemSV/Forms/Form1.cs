@@ -15,6 +15,11 @@ namespace QuanLyDiemSV
         public Form1()
         {
             InitializeComponent();
+           // uC_TraCuuDiem_Container1.AddTraCuuDiemClicked += UC_TraCuuDiem_Container1_AddTraCuuDiemClicked;
+            uC_TraCuu_ChiTiet1.QuayLaiTraCuulicked += (s, e) =>
+            {
+                uC_TraCuuDiem_Container1.BringToFront();
+            };
 
             // --- SỬA LỖI Ở ĐÂY: KẾT NỐI 2 FORM CON ---
             // Phần này phải viết trong Constructor (sau InitializeComponent)
@@ -40,6 +45,12 @@ namespace QuanLyDiemSV
                 uC_QuanLyDiem_Container1.BringToFront();
                 uC_Diem1.Visible = false;
             };
+        }
+
+        private void UC_TraCuuDiem_Container1_AddTraCuuDiemClicked(object? sender, EventArgs e)
+        {
+            //
+            uC_TraCuu_ChiTiet1.BringToFront();
         }
 
         // --- CÁC NÚT MENU ---
@@ -114,6 +125,12 @@ namespace QuanLyDiemSV
         {
             ActivateButton(sender);
             uC_TaiKhoan1.BringToFront();
+        }
+
+        private void btnTraCuuDiem_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender);
+            uC_TraCuuDiem_Container1.BringToFront();
         }
     }
 }

@@ -64,6 +64,10 @@
             label6 = new Label();
             panelSearch = new Panel();
             groupBoxSearch = new GroupBox();
+            radGiam = new RadioButton();
+            radTang = new RadioButton();
+            cboKieuSX = new ComboBox();
+            label14 = new Label();
             txtAdTuKhoa_SV = new TextBox();
             label11 = new Label();
             label12 = new Label();
@@ -82,10 +86,6 @@
             SDT = new DataGridViewTextBoxColumn();
             MaLop = new DataGridViewTextBoxColumn();
             CCCD = new DataGridViewTextBoxColumn();
-            radGiam = new RadioButton();
-            radTang = new RadioButton();
-            cboKieuSX = new ComboBox();
-            label14 = new Label();
             panelInput.SuspendLayout();
             groupBoxInfo.SuspendLayout();
             panelSearch.SuspendLayout();
@@ -153,7 +153,7 @@
             // 
             // dtpAdNamSinhSV
             // 
-            dtpAdNamSinhSV.Format = DateTimePickerFormat.Short;
+            dtpAdNamSinhSV.Format = DateTimePickerFormat.Custom;
             dtpAdNamSinhSV.Location = new Point(171, 94);
             dtpAdNamSinhSV.Margin = new Padding(3, 4, 3, 4);
             dtpAdNamSinhSV.Name = "dtpAdNamSinhSV";
@@ -404,6 +404,7 @@
             cboAdSV_TenLop.Name = "cboAdSV_TenLop";
             cboAdSV_TenLop.Size = new Size(400, 28);
             cboAdSV_TenLop.TabIndex = 7;
+            cboAdSV_TenLop.SelectedIndexChanged += cboAdSV_TenLop_SelectedIndexChanged;
             // 
             // label10
             // 
@@ -492,6 +493,45 @@
             groupBoxSearch.TabIndex = 0;
             groupBoxSearch.TabStop = false;
             groupBoxSearch.Text = "Tìm kiếm";
+            // 
+            // radGiam
+            // 
+            radGiam.AutoSize = true;
+            radGiam.Location = new Point(1562, 23);
+            radGiam.Name = "radGiam";
+            radGiam.Size = new Size(67, 24);
+            radGiam.TabIndex = 88;
+            radGiam.TabStop = true;
+            radGiam.Text = "Giảm";
+            radGiam.UseVisualStyleBackColor = true;
+            // 
+            // radTang
+            // 
+            radTang.AutoSize = true;
+            radTang.Location = new Point(1478, 23);
+            radTang.Name = "radTang";
+            radTang.Size = new Size(64, 24);
+            radTang.TabIndex = 89;
+            radTang.TabStop = true;
+            radTang.Text = "Tăng";
+            radTang.UseVisualStyleBackColor = true;
+            // 
+            // cboKieuSX
+            // 
+            cboKieuSX.FormattingEnabled = true;
+            cboKieuSX.Location = new Point(1311, 25);
+            cboKieuSX.Name = "cboKieuSX";
+            cboKieuSX.Size = new Size(151, 28);
+            cboKieuSX.TabIndex = 87;
+            // 
+            // label14
+            // 
+            label14.AutoSize = true;
+            label14.Location = new Point(1184, 27);
+            label14.Name = "label14";
+            label14.Size = new Size(104, 20);
+            label14.TabIndex = 86;
+            label14.Text = "Kiểu Sắp Xếp:";
             // 
             // txtAdTuKhoa_SV
             // 
@@ -684,45 +724,6 @@
             CCCD.Name = "CCCD";
             CCCD.ReadOnly = true;
             CCCD.Width = 179;
-            // 
-            // radGiam
-            // 
-            radGiam.AutoSize = true;
-            radGiam.Location = new Point(1562, 23);
-            radGiam.Name = "radGiam";
-            radGiam.Size = new Size(67, 24);
-            radGiam.TabIndex = 88;
-            radGiam.TabStop = true;
-            radGiam.Text = "Giảm";
-            radGiam.UseVisualStyleBackColor = true;
-            // 
-            // radTang
-            // 
-            radTang.AutoSize = true;
-            radTang.Location = new Point(1478, 23);
-            radTang.Name = "radTang";
-            radTang.Size = new Size(64, 24);
-            radTang.TabIndex = 89;
-            radTang.TabStop = true;
-            radTang.Text = "Tăng";
-            radTang.UseVisualStyleBackColor = true;
-            // 
-            // cboKieuSX
-            // 
-            cboKieuSX.FormattingEnabled = true;
-            cboKieuSX.Location = new Point(1311, 25);
-            cboKieuSX.Name = "cboKieuSX";
-            cboKieuSX.Size = new Size(151, 28);
-            cboKieuSX.TabIndex = 87;
-            // 
-            // label14
-            // 
-            label14.AutoSize = true;
-            label14.Location = new Point(1184, 27);
-            label14.Name = "label14";
-            label14.Size = new Size(104, 20);
-            label14.TabIndex = 86;
-            label14.Text = "Kiểu Sắp Xếp:";
             // 
             // UC_SinhVien
             // 
